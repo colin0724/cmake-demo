@@ -12,12 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: configure
-      run: ./configure
+    - name: Checkout
+      uses: actions/checkout@master
+      with:
+        ref: master
+
+    # - uses: actions/checkout@v2
+
+    - name: cmake
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+
     - name: make
       run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
